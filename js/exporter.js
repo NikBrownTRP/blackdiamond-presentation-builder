@@ -6,7 +6,7 @@
 
 (function () {
 
-  var LS_KEY = 'pres-generator-autosave';
+  var LS_KEY = 'bd-pres-generator-autosave';
   var SLIDE_W = 960;
   var SLIDE_H = 540;
 
@@ -18,7 +18,7 @@
      presentations with many images). Falls back to localStorage if IDB
      is unavailable.
      ----------------------------------------------------------------------- */
-  var IDB_NAME = 'pres-generator';
+  var IDB_NAME = 'bd-pres-generator';
   var IDB_STORE = 'state';
   var IDB_KEY = 'current';
   var _dbPromise = null;

@@ -1733,9 +1733,15 @@
     state.meta = newState.meta || { title: 'Untitled Presentation', updatedAt: null };
     state.activeSlideId = state.slides.length > 0 ? state.slides[0].id : null;
 
-    // Backward compatibility: add per-slide theme if missing
+    // Backward compatibility: add per-slide theme if missing.
+    // Also rewrite legacy logo paths (TRP/Tektro) to the Black Diamond logo,
+    // so state imported from JSON/HTML or shared between origins doesn't 404.
     state.slides.forEach(function (slide) {
-      if (!slide.theme) slide.theme = state.theme || 'black-diamond';
+      slide.theme = 'black-diamond';
+      if (slide.data && typeof slide.data.logo === 'string' &&
+          /assets\/Logo (TRP|Tektro)/i.test(slide.data.logo)) {
+        slide.data.logo = DEFAULT_LOGO;
+      }
     });
 
     if (dom.themeSelect) dom.themeSelect.value = state.theme;

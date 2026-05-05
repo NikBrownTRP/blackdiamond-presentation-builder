@@ -8,43 +8,27 @@
 [data-theme="black-diamond"] {
   --pres-bg: #000000;
   --pres-bg-alt: #0A0A0A;
-  --pres-bg-surface: #141414;
+  --pres-bg-surface: #111111;
   --pres-text: #FFFFFF;
-  --pres-text-secondary: #C8C2B8;
-  --pres-text-muted: #6B6760;
-  --pres-accent: #B0532D;            /* Burnt Sienna — BD product accent */
+  --pres-text-secondary: rgba(255, 255, 255, 0.78);
+  --pres-text-muted: rgba(255, 255, 255, 0.45);
+  --pres-accent: #B0532D;            /* Burnt Sienna — BD signature accent */
   --pres-accent-light: #C46A3F;
-  --pres-accent-secondary: #F5EFE6;  /* Off-white for dividers/strokes */
+  --pres-accent-secondary: #FFFFFF;  /* White for hairline rules */
   --pres-accent-tertiary: #6E8A9C;   /* Glacier — secondary cool accent */
-  --pres-accent-glow: rgba(176, 83, 45, 0.28);
+  --pres-accent-glow: transparent;   /* No glows in BD */
   --pres-chart-color: #B0532D;
-  --pres-border: #1F1F1F;
-  --pres-font-heading: 'Oswald', sans-serif;
+  --pres-border: rgba(255, 255, 255, 0.18);
+  --pres-font-heading: 'Bebas Neue', 'Anton', sans-serif;
   --pres-font-body: 'Inter', sans-serif;
-  --pres-heading-weight: 700;
+  --pres-heading-weight: 400;        /* Bebas Neue is single-weight */
   --pres-heading-transform: uppercase;
-  --pres-heading-tracking: 0.02em;
-  --pres-corner-size: 40px;
-  --pres-corner-weight: 1px;
-  --pres-accent-bar-height: 3px;
-  --pres-underline-height: 2px;
+  --pres-heading-tracking: 0.04em;
+  --pres-corner-size: 0;             /* No TRP corner brackets */
+  --pres-corner-weight: 0;
+  --pres-accent-bar-height: 1px;     /* 1px hairline rule, not a stripe */
+  --pres-underline-height: 1px;
   --pres-radius: 0px;
-}
-
-/* Subtle directional grain — evokes BD's rugged/technical print feel */
-[data-theme="black-diamond"] .pres-slide::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 2px,
-    rgba(255, 255, 255, 0.012) 2px,
-    rgba(255, 255, 255, 0.012) 4px
-  );
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -1533,4 +1517,333 @@
 /* Logo fades in last */
 .pres-slide--spotlight.pres-slide--animated .pres-slide-logo {
   animation: pressFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both;
+}
+
+/* ==========================================================================
+   BLACK DIAMOND — identity overrides
+   These rules win by source order and selector specificity. They strip
+   TRP-era decorations (corner brackets, glow halos, diamond bullets,
+   drop shadows, racing-stripe accent bars) and replace them with the
+   BD signature: stark black, hairline rules, all-caps Bebas Neue,
+   editorial bottom signage strip, single warm accent.
+   ========================================================================== */
+
+/* Pure black, no overlays */
+[data-theme="black-diamond"].pres-slide,
+[data-theme="black-diamond"] .pres-slide {
+  background: #000000;
+}
+[data-theme="black-diamond"] .pres-slide::before,
+[data-theme="black-diamond"].pres-slide::before {
+  display: none;
+}
+
+/* Kill TRP corner brackets on every template */
+[data-theme="black-diamond"] .pres-corner {
+  display: none !important;
+}
+
+/* Logo: small, top-left, white, never the giant centered TRP treatment */
+[data-theme="black-diamond"] .pres-logo {
+  position: absolute;
+  top: 36px;
+  left: 48px;
+  height: 24px;
+  width: auto;
+  max-width: 200px;
+  z-index: 4;
+  filter: none;
+}
+
+/* Editorial bottom signage strip — appears on every template */
+[data-theme="black-diamond"] .pres-slide::after {
+  content: '';
+  position: absolute;
+  left: 48px;
+  right: 48px;
+  bottom: 28px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.22);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ----- Title slide ----- */
+[data-theme="black-diamond"] .pres-slide--title .pres-slide__content {
+  text-align: left;
+  padding: 120px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+}
+[data-theme="black-diamond"] .pres-slide--title .pres-title {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: 128px;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 0;
+  text-align: left;
+  max-width: 90%;
+}
+[data-theme="black-diamond"] .pres-slide--title .pres-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0;
+  margin: 28px 0 0;
+  text-align: left;
+  max-width: 70%;
+}
+[data-theme="black-diamond"] .pres-slide--title .pres-accent-line {
+  width: 80px;
+  height: 1px;
+  background: #B0532D;
+  border-radius: 0;
+  margin: 28px 0 0;
+}
+[data-theme="black-diamond"] .pres-slide--title .pres-brandline {
+  position: absolute;
+  bottom: 12px;
+  left: 48px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+/* ----- Product slide ----- */
+[data-theme="black-diamond"] .pres-slide--product .pres-product-info {
+  padding: 96px 40px 80px 48px;
+  justify-content: flex-end;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-category {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B0532D;
+  margin-bottom: 18px;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-product-name {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: 72px;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 28px;
+  max-width: 95%;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-selling-point {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  align-items: center;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-selling-point:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-selling-point::before {
+  content: counter(bd-sp, decimal-leading-zero);
+  counter-increment: bd-sp;
+  background: transparent;
+  transform: none;
+  width: auto;
+  height: auto;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #B0532D;
+  margin-top: 0;
+  margin-right: 6px;
+  min-width: 28px;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-selling-points {
+  counter-reset: bd-sp;
+  gap: 0;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-product-image-area {
+  background: #0A0A0A;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-product-image-area::before {
+  display: none;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-product-img {
+  filter: none;
+  max-width: 92%;
+  max-height: 92%;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-divider {
+  display: none;
+}
+[data-theme="black-diamond"] .pres-slide--product .pres-badge {
+  background: #FFFFFF;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 0;
+}
+
+/* ----- Spec slide ----- */
+[data-theme="black-diamond"] .pres-slide--spec .pres-spec-product-name {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: 56px;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+[data-theme="black-diamond"] .pres-slide--spec .pres-spec-table tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+[data-theme="black-diamond"] .pres-slide--spec .pres-spec-table th,
+[data-theme="black-diamond"] .pres-slide--spec .pres-spec-table td {
+  background: transparent !important;
+  font-family: 'Inter', sans-serif;
+}
+[data-theme="black-diamond"] .pres-slide--spec .pres-spec-underline {
+  background: #B0532D;
+  height: 1px;
+  width: 60px;
+  border-radius: 0;
+}
+
+/* ----- Generic / Header + List slide ----- */
+[data-theme="black-diamond"] .pres-slide--generic .pres-generic-heading,
+[data-theme="black-diamond"] .pres-slide--gallery .pres-gallery-heading,
+[data-theme="black-diamond"] .pres-slide--graph .pres-graph-heading {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: 64px;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+[data-theme="black-diamond"] .pres-slide--generic .pres-generic-subheading,
+[data-theme="black-diamond"] .pres-slide--gallery .pres-gallery-subheading,
+[data-theme="black-diamond"] .pres-slide--graph .pres-graph-subheading {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.78);
+}
+[data-theme="black-diamond"] .pres-slide--generic .pres-generic-underline,
+[data-theme="black-diamond"] .pres-slide--gallery .pres-gallery-underline,
+[data-theme="black-diamond"] .pres-slide--graph .pres-graph-underline {
+  background: #B0532D;
+  height: 1px;
+  width: 60px;
+  border-radius: 0;
+  margin-top: 18px;
+}
+[data-theme="black-diamond"] .pres-slide--generic .pres-bullet-item {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+[data-theme="black-diamond"] .pres-slide--generic .pres-bullet-item:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+[data-theme="black-diamond"] .pres-slide--generic .pres-bullet-item::before {
+  content: '';
+  background: #B0532D;
+  width: 16px;
+  height: 1px;
+  transform: none;
+  border-radius: 0;
+  margin-top: 11px;
+  margin-right: 12px;
+  min-width: 16px;
+}
+
+/* ----- Gallery slide ----- */
+[data-theme="black-diamond"] .pres-slide--gallery .pres-gallery-img,
+[data-theme="black-diamond"] .pres-slide--gallery .pres-gallery-cell img {
+  border-radius: 0;
+  filter: none;
+  box-shadow: none;
+}
+[data-theme="black-diamond"] .pres-slide--gallery .pres-gallery-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ----- Graph slide ----- */
+[data-theme="black-diamond"] .pres-slide--graph .pres-graph-detail-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #B0532D;
+}
+[data-theme="black-diamond"] .pres-slide--graph .pres-graph-detail-value {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/* ----- Spotlight slide ----- */
+[data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #B0532D;
+}
+[data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__headline {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: 144px;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+[data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.78);
+}
+[data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__stat-value {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  color: #B0532D;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+[data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
 }

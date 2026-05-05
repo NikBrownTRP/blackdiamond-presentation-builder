@@ -256,7 +256,7 @@
 
       fields: [
         { key: 'productName', role: 'title', type: 'text', label: 'Product Name', placeholder: 'e.g., Solution Guide Harness', required: true },
-        { key: 'tagline', role: 'subtitle', type: 'text', label: 'Tagline', placeholder: 'e.g., Race-Proven Stopping Power' },
+        { key: 'tagline', role: 'subtitle', type: 'text', label: 'Tagline', placeholder: 'e.g., Engineered for the Vertical World' },
         { key: 'category', role: 'kicker', type: 'text', label: 'Category', placeholder: 'e.g., Climbing / Trad Protection' },
         { key: 'productImage', role: 'hero-image', type: 'image', label: 'Product Image' },
         { key: 'sellingPoints', role: 'list', type: 'list', label: 'Key Selling Points', placeholder: 'Add a selling point...', maxItems: 5 },
