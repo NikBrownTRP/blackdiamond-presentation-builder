@@ -19,11 +19,11 @@
   --pres-accent-glow: transparent;   /* No glows in BD */
   --pres-chart-color: #B0532D;
   --pres-border: rgba(255, 255, 255, 0.18);
-  --pres-font-heading: 'Bebas Neue', 'Anton', sans-serif;
+  --pres-font-heading: 'Futura', 'Jost', 'Futura PT', 'Century Gothic', sans-serif;
   --pres-font-body: 'Inter', sans-serif;
-  --pres-heading-weight: 400;        /* Bebas Neue is single-weight */
+  --pres-heading-weight: 800;        /* Futura Extra Bold equivalent */
   --pres-heading-transform: uppercase;
-  --pres-heading-tracking: 0.04em;
+  --pres-heading-tracking: 0;        /* Futura is geometric — no tracking */
   --pres-corner-size: 0;             /* No TRP corner brackets */
   --pres-corner-weight: 0;
   --pres-accent-bar-height: 1px;     /* 1px hairline rule, not a stripe */
@@ -1579,15 +1579,15 @@
   gap: 0;
 }
 [data-theme="black-diamond"] .pres-slide--title .pres-title {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
-  font-size: 128px;
-  line-height: 0.92;
-  letter-spacing: 0.02em;
+  font-family: 'Futura', 'Jost', 'Futura PT', 'Century Gothic', sans-serif;
+  font-size: 88px;
+  line-height: 0.95;
+  letter-spacing: 0;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 800;
   margin: 0;
   text-align: left;
-  max-width: 90%;
+  max-width: 92%;
 }
 [data-theme="black-diamond"] .pres-slide--title .pres-subtitle {
   font-family: 'Inter', sans-serif;
@@ -1633,12 +1633,12 @@
   margin-bottom: 18px;
 }
 [data-theme="black-diamond"] .pres-slide--product .pres-product-name {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
-  font-size: 72px;
-  line-height: 0.95;
-  letter-spacing: 0.02em;
+  font-family: 'Futura', 'Jost', 'Futura PT', 'Century Gothic', sans-serif;
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 800;
   margin-bottom: 14px;
 }
 [data-theme="black-diamond"] .pres-slide--product .pres-tagline {
@@ -1708,12 +1708,12 @@
 
 /* ----- Spec slide ----- */
 [data-theme="black-diamond"] .pres-slide--spec .pres-spec-product-name {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
-  font-size: 56px;
-  line-height: 0.95;
-  letter-spacing: 0.02em;
+  font-family: 'Futura', 'Jost', 'Futura PT', 'Century Gothic', sans-serif;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 800;
 }
 [data-theme="black-diamond"] .pres-slide--spec .pres-spec-table tr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
@@ -1734,12 +1734,12 @@
 [data-theme="black-diamond"] .pres-slide--generic .pres-generic-heading,
 [data-theme="black-diamond"] .pres-slide--gallery .pres-gallery-heading,
 [data-theme="black-diamond"] .pres-slide--graph .pres-graph-heading {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
-  font-size: 64px;
-  line-height: 0.95;
-  letter-spacing: 0.02em;
+  font-family: 'Futura', 'Jost', 'Futura PT', 'Century Gothic', sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 800;
 }
 [data-theme="black-diamond"] .pres-slide--generic .pres-generic-subheading,
 [data-theme="black-diamond"] .pres-slide--gallery .pres-gallery-subheading,
@@ -1805,10 +1805,11 @@
   color: #B0532D;
 }
 [data-theme="black-diamond"] .pres-slide--graph .pres-graph-detail-value {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
-  font-size: 36px;
+  font-family: 'Futura', 'Jost', 'Futura PT', 'Century Gothic', sans-serif;
+  font-size: 28px;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
+  font-weight: 800;
 }
 
 /* ----- Spotlight slide ----- */
@@ -1821,12 +1822,12 @@
   color: #B0532D;
 }
 [data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__headline {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
-  font-size: 144px;
-  line-height: 0.92;
-  letter-spacing: 0.02em;
+  font-family: 'Futura', 'Jost', 'Futura PT', 'Century Gothic', sans-serif;
+  font-size: 104px;
+  line-height: 0.95;
+  letter-spacing: 0;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 800;
 }
 [data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__tagline {
   font-family: 'Inter', sans-serif;
@@ -1834,10 +1835,10 @@
   color: rgba(255, 255, 255, 0.78);
 }
 [data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__stat-value {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-family: 'Futura', 'Jost', 'Futura PT', 'Century Gothic', sans-serif;
   color: #B0532D;
-  letter-spacing: 0.02em;
-  font-weight: 400;
+  letter-spacing: 0;
+  font-weight: 800;
 }
 [data-theme="black-diamond"] .pres-slide--spotlight .pres-spotlight__stat-label {
   font-family: 'Inter', sans-serif;
