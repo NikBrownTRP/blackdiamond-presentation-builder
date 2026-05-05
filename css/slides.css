@@ -1,0 +1,1536 @@
+/* ==========================================================================
+   Sales Presentation Generator — Slide Styles
+   Black Diamond Equipment — single dark theme
+   Black background, white text, burnt sienna accent.
+   Fonts: Oswald (industrial all-caps headings) + Inter (body).
+   ========================================================================== */
+
+[data-theme="black-diamond"] {
+  --pres-bg: #000000;
+  --pres-bg-alt: #0A0A0A;
+  --pres-bg-surface: #141414;
+  --pres-text: #FFFFFF;
+  --pres-text-secondary: #C8C2B8;
+  --pres-text-muted: #6B6760;
+  --pres-accent: #B0532D;            /* Burnt Sienna — BD product accent */
+  --pres-accent-light: #C46A3F;
+  --pres-accent-secondary: #F5EFE6;  /* Off-white for dividers/strokes */
+  --pres-accent-tertiary: #6E8A9C;   /* Glacier — secondary cool accent */
+  --pres-accent-glow: rgba(176, 83, 45, 0.28);
+  --pres-chart-color: #B0532D;
+  --pres-border: #1F1F1F;
+  --pres-font-heading: 'Oswald', sans-serif;
+  --pres-font-body: 'Inter', sans-serif;
+  --pres-heading-weight: 700;
+  --pres-heading-transform: uppercase;
+  --pres-heading-tracking: 0.02em;
+  --pres-corner-size: 40px;
+  --pres-corner-weight: 1px;
+  --pres-accent-bar-height: 3px;
+  --pres-underline-height: 2px;
+  --pres-radius: 0px;
+}
+
+/* Subtle directional grain — evokes BD's rugged/technical print feel */
+[data-theme="black-diamond"] .pres-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.012) 2px,
+    rgba(255, 255, 255, 0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Base Slide
+   -------------------------------------------------------------------------- */
+.pres-slide {
+  width: 960px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--pres-font-body);
+  color: var(--pres-text);
+  background: var(--pres-bg);
+}
+
+.pres-slide * {
+  box-sizing: border-box;
+}
+
+.pres-slide__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Accent bar (top of every slide) */
+.pres-accent-bar {
+  height: var(--pres-accent-bar-height, 4px);
+  background: var(--pres-accent);
+  flex-shrink: 0;
+}
+
+/* Slide footer strip */
+.pres-slide-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--pres-text-muted);
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   TEMPLATE 1: Title Page
+   -------------------------------------------------------------------------- */
+.pres-slide--title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pres-slide--title .pres-slide__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.pres-slide--title .pres-slide__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.pres-slide--title .pres-slide__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 64px;
+  text-align: center;
+  height: 100%;
+}
+
+.pres-slide--title .pres-logo {
+  max-height: 60px;
+  max-width: 200px;
+  margin-bottom: 32px;
+  object-fit: contain;
+}
+
+.pres-slide--title .pres-title {
+  font-family: var(--pres-font-heading);
+  font-weight: var(--pres-heading-weight);
+  font-size: 52px;
+  line-height: 1.1;
+  letter-spacing: var(--pres-heading-tracking, -0.02em);
+  text-transform: var(--pres-heading-transform, none);
+  color: var(--pres-text);
+  margin-bottom: 16px;
+}
+
+.pres-slide--title .pres-subtitle {
+  font-family: var(--pres-font-body);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--pres-text-secondary);
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+
+.pres-slide--title .pres-accent-line {
+  width: 64px;
+  height: 4px;
+  background: var(--pres-accent);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+.pres-slide--title .pres-brandline {
+  font-family: var(--pres-font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--pres-accent);
+  position: absolute;
+  bottom: 40px;
+}
+
+/* Decorative corner accents for title slide */
+.pres-slide--title .pres-corner {
+  position: absolute;
+  width: var(--pres-corner-size, 40px);
+  height: var(--pres-corner-size, 40px);
+  z-index: 2;
+  display: var(--pres-corner-size, block);
+}
+.pres-slide--title .pres-corner--tl {
+  top: 24px; left: 24px;
+  border-top: var(--pres-corner-weight, 2px) solid var(--pres-accent);
+  border-left: var(--pres-corner-weight, 2px) solid var(--pres-accent);
+}
+.pres-slide--title .pres-corner--br {
+  bottom: 24px; right: 24px;
+  border-bottom: var(--pres-corner-weight, 2px) solid var(--pres-accent);
+  border-right: var(--pres-corner-weight, 2px) solid var(--pres-accent);
+}
+
+/* Hide corners for Tektro (clean editorial, no decorations) */
+[data-theme="tektro-light"] .pres-corner,
+[data-theme="trp-tektro-corporate"] .pres-corner {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   TEMPLATE 2: Product Presentation
+   -------------------------------------------------------------------------- */
+.pres-slide--product .pres-slide__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+}
+
+.pres-slide--product .pres-product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 40px 48px 48px;
+}
+
+.pres-slide--product .pres-category {
+  font-family: var(--pres-font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--pres-accent);
+  margin-bottom: 12px;
+}
+
+.pres-slide--product .pres-product-name {
+  font-family: var(--pres-font-heading);
+  font-weight: var(--pres-heading-weight);
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: var(--pres-heading-tracking, -0.02em);
+  text-transform: var(--pres-heading-transform, none);
+  color: var(--pres-text);
+  margin-bottom: 10px;
+}
+
+.pres-slide--product .pres-tagline {
+  font-size: 16px;
+  color: var(--pres-text-secondary);
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.pres-slide--product .pres-selling-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pres-slide--product .pres-selling-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--pres-text-secondary);
+  line-height: 1.4;
+}
+
+.pres-slide--product .pres-selling-point::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  background: var(--pres-accent);
+  transform: rotate(45deg);
+  margin-top: 5px;
+}
+
+.pres-slide--product .pres-product-image-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pres-slide--product .pres-product-image-area::before {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--pres-accent-glow) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.pres-slide--product .pres-product-img {
+  position: relative;
+  z-index: 1;
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
+}
+
+.pres-slide--product .pres-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--pres-accent-secondary, var(--pres-accent));
+  color: #fff;
+  font-family: var(--pres-font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: var(--pres-radius, 3px);
+  z-index: 3;
+}
+
+/* Tektro badge — white text on dark accent */
+/* Tektro badge: yellow accent (#FFDF00) with dark text — signature highlight */
+[data-theme="tektro-light"] .pres-badge {
+  background: var(--pres-accent-tertiary);
+  color: #1A1A1A;
+  font-weight: 700;
+}
+
+/* Vertical accent line separator */
+.pres-slide--product .pres-divider {
+  position: absolute;
+  top: 20%;
+  bottom: 20%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--pres-border) 30%,
+    var(--pres-border) 70%,
+    transparent
+  );
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   TEMPLATE 3: Product Spec
+   -------------------------------------------------------------------------- */
+.pres-slide--spec .pres-slide__content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pres-slide--spec .pres-spec-header {
+  padding: 32px 48px 20px;
+  border-bottom: 1px solid var(--pres-border);
+}
+
+.pres-slide--spec .pres-spec-product-name {
+  font-family: var(--pres-font-heading);
+  font-weight: var(--pres-heading-weight);
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: var(--pres-heading-tracking, -0.02em);
+  text-transform: var(--pres-heading-transform, none);
+  color: var(--pres-text);
+  margin-bottom: 4px;
+}
+
+.pres-slide--spec .pres-spec-underline {
+  width: 48px;
+  height: var(--pres-underline-height, 3px);
+  background: var(--pres-accent);
+  border-radius: 2px;
+}
+
+.pres-slide--spec .pres-spec-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  overflow: hidden;
+}
+
+.pres-slide--spec .pres-spec-left {
+  padding: 24px 24px 24px 48px;
+  overflow: hidden;
+}
+
+.pres-slide--spec .pres-spec-right {
+  padding: 24px 48px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pres-slide--spec .pres-spec-right::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--pres-border) 20%, var(--pres-border) 80%, transparent);
+}
+
+/* Spec Table */
+.pres-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pres-spec-table tr {
+  border-bottom: 1px solid var(--pres-border);
+}
+
+.pres-spec-table tr:last-child {
+  border-bottom: none;
+}
+
+.pres-spec-table td {
+  padding: 8px 12px;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.pres-spec-table td:first-child {
+  font-weight: 600;
+  color: var(--pres-text);
+  width: 40%;
+  white-space: nowrap;
+}
+
+.pres-spec-table td:last-child {
+  color: var(--pres-text-secondary);
+}
+
+.pres-spec-table tr:nth-child(even) {
+  background: var(--pres-bg-alt);
+}
+
+/* Spec features list */
+.pres-spec-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pres-spec-features__title {
+  font-family: var(--pres-font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--pres-accent);
+  margin-bottom: 4px;
+}
+
+.pres-spec-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--pres-text-secondary);
+  line-height: 1.4;
+}
+
+.pres-spec-feature__icon {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pres-accent);
+  margin-top: 1px;
+}
+
+/* Indented list item (hierarchy level 1) */
+.pres-spec-feature--indent {
+  padding-left: 1.5em;
+}
+
+.pres-bullet-item--indent {
+  padding-left: 1.5em;
+}
+
+/* Spec product image */
+.pres-spec-product-img {
+  max-width: 95%;
+  max-height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.pres-slide--spec .pres-footnote {
+  position: absolute;
+  bottom: 12px;
+  left: 48px;
+  font-size: 10px;
+  color: var(--pres-text-muted);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   TEMPLATE 4: Generic Header + List
+   -------------------------------------------------------------------------- */
+.pres-slide--generic .pres-slide__content {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.pres-slide--generic .pres-generic-header {
+  padding: 36px 48px 20px;
+}
+
+.pres-slide--generic .pres-generic-heading {
+  font-family: var(--pres-font-heading);
+  font-weight: var(--pres-heading-weight);
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: var(--pres-heading-tracking, -0.02em);
+  text-transform: var(--pres-heading-transform, none);
+  color: var(--pres-text);
+  margin-bottom: 4px;
+}
+
+.pres-slide--generic .pres-generic-subheading {
+  font-size: 16px;
+  color: var(--pres-text-secondary);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.pres-slide--generic .pres-generic-underline {
+  width: 48px;
+  height: var(--pres-underline-height, 3px);
+  background: var(--pres-accent);
+  border-radius: 2px;
+}
+
+.pres-slide--generic .pres-generic-body {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Layout: text-left (text left, image right) */
+.pres-slide--generic .pres-generic-body--text-left,
+.pres-slide--generic .pres-generic-body--text-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pres-slide--generic .pres-generic-body--text-right {
+  direction: rtl;
+}
+.pres-slide--generic .pres-generic-body--text-right > * {
+  direction: ltr;
+}
+
+/* Layout: text-full */
+.pres-slide--generic .pres-generic-body--text-full {
+  padding: 0 48px 48px;
+}
+
+/* Layout: text-center */
+.pres-slide--generic .pres-generic-body--text-center {
+  padding: 0 80px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pres-slide--generic .pres-generic-text {
+  padding: 16px 32px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.pres-slide--generic .pres-generic-image-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Extra bottom padding balances the header above + clears the bottom
+     logo (bottom:12px, ~20px tall), so the picture reads as centered on
+     the whole slide instead of just the body area. */
+  padding: 16px 16px 90px;
+  overflow: hidden;
+}
+
+.pres-slide--generic .pres-generic-img {
+  /* Cap at 92% of the image-area's content box so the drop-shadow (blur 12
+     → ~18-20px visible fade) always has breathing room. With width/height
+     100%, an aspect-matching picture would fill right to the padding edge
+     and its shadow would get clipped by the image-area's overflow:hidden,
+     producing a sharp, awkward cut at the top/sides. */
+  max-width: 92%;
+  max-height: 92%;
+  object-fit: contain;
+  border-radius: 4px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+/* Bullet List */
+.pres-bullet-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pres-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--pres-text-secondary);
+  line-height: 1.5;
+}
+
+.pres-bullet-item__marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pres-accent);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   TEMPLATE 5: Product Gallery
+   -------------------------------------------------------------------------- */
+.pres-slide--gallery .pres-slide__content {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.pres-slide--gallery .pres-gallery-header {
+  padding: 32px 48px 16px;
+}
+
+.pres-slide--gallery .pres-gallery-heading {
+  font-family: var(--pres-font-heading);
+  font-weight: var(--pres-heading-weight);
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: var(--pres-heading-tracking, -0.02em);
+  text-transform: var(--pres-heading-transform, none);
+  color: var(--pres-text);
+  margin-bottom: 4px;
+}
+
+.pres-slide--gallery .pres-gallery-subheading {
+  font-size: 14px;
+  color: var(--pres-text-secondary);
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.pres-slide--gallery .pres-gallery-underline {
+  width: 48px;
+  height: var(--pres-underline-height, 3px);
+  background: var(--pres-accent);
+  border-radius: 2px;
+}
+
+.pres-gallery-grid {
+  flex: 1;
+  display: grid;
+  gap: 16px;
+  padding: 16px 48px 32px;
+  align-items: stretch;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pres-gallery-grid--3col {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.pres-gallery-grid--2col {
+  grid-template-columns: 1fr 1fr;
+}
+
+.pres-gallery-grid--1-2 {
+  grid-template-columns: 1.4fr 1fr 1fr;
+}
+
+.pres-gallery-item {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.pres-gallery-image-wrap {
+  flex: 1;
+  background: var(--pres-bg-alt);
+  border-radius: var(--pres-radius, 6px);
+  border: 1px solid var(--pres-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.pres-gallery-img {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.pres-gallery-caption {
+  font-size: 12px;
+  color: var(--pres-text-secondary);
+  text-align: center;
+  padding: 8px 4px 0;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   TEMPLATE 6: Data & Graph
+   -------------------------------------------------------------------------- */
+.pres-slide--graph .pres-slide__content {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.pres-slide--graph .pres-graph-header {
+  padding: 28px 48px 14px;
+}
+
+.pres-slide--graph .pres-graph-heading {
+  font-family: var(--pres-font-heading);
+  font-weight: var(--pres-heading-weight);
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: var(--pres-heading-tracking, -0.02em);
+  text-transform: var(--pres-heading-transform, none);
+  color: var(--pres-text);
+  margin-bottom: 4px;
+}
+
+.pres-slide--graph .pres-graph-subheading {
+  font-size: 14px;
+  color: var(--pres-text-secondary);
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.pres-slide--graph .pres-graph-underline {
+  width: 48px;
+  height: var(--pres-underline-height, 3px);
+  background: var(--pres-accent);
+  border-radius: 2px;
+}
+
+.pres-graph-body {
+  flex: 1;
+  display: flex;
+  padding: 8px 48px 12px;
+  gap: 24px;
+  min-height: 0;
+}
+
+.pres-graph-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  position: relative;
+}
+
+.pres-graph-chart-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pres-graph-chart-wrap svg {
+  max-width: 100%;
+  max-height: 100%;
+  color: var(--pres-text);
+}
+
+.pres-graph-xlabel {
+  font-size: 10px;
+  color: var(--pres-text-muted);
+  text-align: center;
+  margin-top: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pres-graph-ylabel {
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: left center;
+  font-size: 10px;
+  color: var(--pres-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.pres-graph-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pres-graph-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid var(--pres-border);
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3));
+}
+
+.pres-graph-notes {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 8px 0 8px 24px;
+  border-left: 1px solid var(--pres-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pres-graph-notes-title {
+  font-family: var(--pres-font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--pres-accent);
+}
+
+.pres-graph-notes .pres-bullet-list {
+  gap: 8px;
+}
+
+.pres-graph-notes .pres-bullet-item {
+  font-size: 12px;
+  line-height: 1.4;
+  gap: 8px;
+}
+
+.pres-graph-notes .pres-bullet-item__marker {
+  margin-top: 5px;
+}
+
+.pres-graph-footnote {
+  position: absolute;
+  bottom: 10px;
+  left: 48px;
+  right: 120px;
+  font-size: 10px;
+  color: var(--pres-text-muted);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder State (no image)
+   -------------------------------------------------------------------------- */
+.pres-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--pres-text-muted);
+  gap: 8px;
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+/* Slide logo — bottom-right brand mark on all non-title slides */
+.pres-slide-logo {
+  position: absolute;
+  bottom: 12px;
+  right: 24px;
+  max-height: 20px;
+  max-width: 80px;
+  object-fit: contain;
+  opacity: 0.4;
+  z-index: 3;
+}
+
+/* Hide placeholders everywhere by default */
+.pres-placeholder {
+  display: none;
+}
+
+/* Only show placeholders inside the builder's live preview + editor thumbnails */
+.builder-preview .pres-placeholder,
+.slide-item__thumbnail .pres-placeholder,
+.template-card__preview .pres-placeholder {
+  display: flex;
+}
+
+/* --------------------------------------------------------------------------
+   Slide Animations — theme-specific, for slideshow mode
+   --------------------------------------------------------------------------
+   TRP Dark: Racing impact — kinetic, cinematic, sharp with snap + glow
+   Tektro Light: Editorial poise — soft blur reveals, slower, refined
+   -------------------------------------------------------------------------- */
+
+/* ===== Shared keyframes ===== */
+@keyframes pressFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pressSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pressSlideLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pressScaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pressAccentLine {
+  from { width: 0; }
+  to { width: 64px; }
+}
+
+/* ===== TRP-specific: aggressive motorsport keyframes ===== */
+
+/* Kinetic: sweep from right with overshoot + motion blur */
+@keyframes trpSlideInRight {
+  0% { opacity: 0; transform: translateX(60px); filter: blur(6px); }
+  60% { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+/* Kinetic: snap in from left with bounce */
+@keyframes trpSlideInLeft {
+  0% { opacity: 0; transform: translateX(-80px) skewX(-2deg); filter: blur(4px); }
+  60% { filter: blur(0); }
+  100% { opacity: 1; transform: translateX(0) skewX(0); filter: blur(0); }
+}
+
+/* Title: clip-path sweep reveal (like a speed line wipe) */
+@keyframes trpTitleReveal {
+  0% { clip-path: inset(0 100% 0 0); opacity: 1; transform: translateX(-20px); }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; transform: translateX(0); }
+}
+
+/* Accent bar: shoots across with glow pulse */
+@keyframes trpAccentShoot {
+  0% { transform: scaleX(0); transform-origin: left center; box-shadow: 0 0 0 rgba(227,24,55,0); }
+  60% { transform: scaleX(1); box-shadow: 0 0 24px rgba(227,24,55,0.6); }
+  100% { transform: scaleX(1); box-shadow: 0 0 0 rgba(227,24,55,0); }
+}
+
+/* Accent underline: expand with glow */
+@keyframes trpAccentLine {
+  0% { width: 0; opacity: 0.3; }
+  100% { width: 64px; opacity: 1; }
+}
+
+/* Corner marks: snap in with slight scale overshoot */
+@keyframes trpCornerSnap {
+  0% { opacity: 0; transform: scale(1.4); }
+  60% { opacity: 1; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Product image: slide in + scale down (like a car whooshing into frame) */
+@keyframes trpProductImg {
+  0% { opacity: 0; transform: translateX(40px) scale(1.06); filter: blur(8px) brightness(1.3); }
+  70% { filter: blur(0) brightness(1); }
+  100% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0) brightness(1); }
+}
+
+/* Badge/category: flash in with scale bounce */
+@keyframes trpFlashIn {
+  0% { opacity: 0; transform: scale(0.4); }
+  60% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Logo: fade with slight slide */
+@keyframes trpLogoIn {
+  0% { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Tektro-specific: editorial, blur-based keyframes ===== */
+
+/* Title: blur-in from slight scale-up (like coming into focus) */
+@keyframes tektroBlurIn {
+  0% { opacity: 0; transform: scale(1.04); filter: blur(14px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+/* Accent bar: expand outward from center */
+@keyframes tektroAccentCenter {
+  0% { transform: scaleX(0); transform-origin: center center; }
+  100% { transform: scaleX(1); transform-origin: center center; }
+}
+
+/* Bullets: gentle lift with slow fade */
+@keyframes tektroGentleRise {
+  0% { opacity: 0; transform: translateY(15px); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Image: scale-down with soft fade (counter to TRP's scale-in feel) */
+/* NOTE: Intentionally no `filter` in these keyframes. The base rules use
+   `filter: drop-shadow(...)` on product / spec / generic imgs; animating
+   the `filter` property here would override the drop-shadow (the last
+   animated frame wins), making the Tektro images look "flat" in the
+   slideshow + HTML export while still shadowed in the editor preview. */
+@keyframes tektroImageReveal {
+  0% { opacity: 0; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Subtitle / tagline: slow rise */
+@keyframes tektroSoftRise {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================================================
+   TRP DARK — animation bindings (racing impact)
+   =================================================================== */
+[data-theme="black-diamond"] .pres-slide--animated .pres-logo {
+  animation: trpLogoIn 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) 0.05s both;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-title,
+[data-theme="black-diamond"] .pres-slide--animated .pres-product-name,
+[data-theme="black-diamond"] .pres-slide--animated .pres-spec-product-name,
+[data-theme="black-diamond"] .pres-slide--animated .pres-generic-heading,
+[data-theme="black-diamond"] .pres-slide--animated .pres-gallery-heading,
+[data-theme="black-diamond"] .pres-slide--animated .pres-graph-heading {
+  animation: trpTitleReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-subtitle,
+[data-theme="black-diamond"] .pres-slide--animated .pres-tagline,
+[data-theme="black-diamond"] .pres-slide--animated .pres-generic-subheading,
+[data-theme="black-diamond"] .pres-slide--animated .pres-gallery-subheading,
+[data-theme="black-diamond"] .pres-slide--animated .pres-graph-subheading {
+  animation: trpSlideInLeft 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.35s both;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-accent-bar {
+  animation: trpAccentShoot 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-accent-line,
+[data-theme="black-diamond"] .pres-slide--animated .pres-spec-underline,
+[data-theme="black-diamond"] .pres-slide--animated .pres-generic-underline,
+[data-theme="black-diamond"] .pres-slide--animated .pres-gallery-underline,
+[data-theme="black-diamond"] .pres-slide--animated .pres-graph-underline {
+  animation: trpAccentLine 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-corner {
+  animation: trpCornerSnap 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.4) 0.25s both;
+}
+[data-theme="black-diamond"] .pres-slide--animated .pres-corner--br {
+  animation-delay: 0.35s;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-brandline {
+  animation: pressFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s both;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-category,
+[data-theme="black-diamond"] .pres-slide--animated .pres-badge {
+  animation: trpFlashIn 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3) 0.2s both;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-product-img,
+[data-theme="black-diamond"] .pres-slide--animated .pres-spec-product-img,
+[data-theme="black-diamond"] .pres-slide--animated .pres-generic-img {
+  animation: trpProductImg 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-selling-point:nth-child(1) { animation: trpSlideInRight 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.45s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-selling-point:nth-child(2) { animation: trpSlideInRight 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.52s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-selling-point:nth-child(3) { animation: trpSlideInRight 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.59s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-selling-point:nth-child(4) { animation: trpSlideInRight 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.66s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-selling-point:nth-child(5) { animation: trpSlideInRight 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.73s both; }
+
+[data-theme="black-diamond"] .pres-slide--animated .pres-bullet-item:nth-child(1) { animation: trpSlideInLeft 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.35s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-bullet-item:nth-child(2) { animation: trpSlideInLeft 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.42s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-bullet-item:nth-child(3) { animation: trpSlideInLeft 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.49s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-bullet-item:nth-child(4) { animation: trpSlideInLeft 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.56s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-bullet-item:nth-child(5) { animation: trpSlideInLeft 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.63s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-bullet-item:nth-child(6) { animation: trpSlideInLeft 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.70s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-bullet-item:nth-child(7) { animation: trpSlideInLeft 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.77s both; }
+[data-theme="black-diamond"] .pres-slide--animated .pres-bullet-item:nth-child(8) { animation: trpSlideInLeft 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.84s both; }
+
+/* ===================================================================
+   TEKTRO LIGHT — animation bindings (editorial poise)
+   =================================================================== */
+[data-theme="tektro-light"] .pres-slide--animated .pres-logo {
+  animation: pressFadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-title,
+[data-theme="tektro-light"] .pres-slide--animated .pres-product-name,
+[data-theme="tektro-light"] .pres-slide--animated .pres-spec-product-name,
+[data-theme="tektro-light"] .pres-slide--animated .pres-generic-heading,
+[data-theme="tektro-light"] .pres-slide--animated .pres-gallery-heading,
+[data-theme="tektro-light"] .pres-slide--animated .pres-graph-heading {
+  animation: tektroBlurIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-subtitle,
+[data-theme="tektro-light"] .pres-slide--animated .pres-tagline,
+[data-theme="tektro-light"] .pres-slide--animated .pres-generic-subheading,
+[data-theme="tektro-light"] .pres-slide--animated .pres-gallery-subheading,
+[data-theme="tektro-light"] .pres-slide--animated .pres-graph-subheading {
+  animation: tektroSoftRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-accent-bar {
+  animation: tektroAccentCenter 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-accent-line,
+[data-theme="tektro-light"] .pres-slide--animated .pres-spec-underline,
+[data-theme="tektro-light"] .pres-slide--animated .pres-generic-underline,
+[data-theme="tektro-light"] .pres-slide--animated .pres-gallery-underline,
+[data-theme="tektro-light"] .pres-slide--animated .pres-graph-underline {
+  animation: tektroAccentCenter 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-brandline {
+  animation: pressFadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+}
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-category,
+[data-theme="tektro-light"] .pres-slide--animated .pres-badge {
+  animation: tektroSoftRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-product-img,
+[data-theme="tektro-light"] .pres-slide--animated .pres-spec-product-img,
+[data-theme="tektro-light"] .pres-slide--animated .pres-generic-img {
+  animation: tektroImageReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-selling-point:nth-child(1) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-selling-point:nth-child(2) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.70s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-selling-point:nth-child(3) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.85s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-selling-point:nth-child(4) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.00s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-selling-point:nth-child(5) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.15s both; }
+
+[data-theme="tektro-light"] .pres-slide--animated .pres-bullet-item:nth-child(1) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-bullet-item:nth-child(2) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.60s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-bullet-item:nth-child(3) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.75s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-bullet-item:nth-child(4) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.90s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-bullet-item:nth-child(5) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.05s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-bullet-item:nth-child(6) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.20s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-bullet-item:nth-child(7) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.35s both; }
+[data-theme="tektro-light"] .pres-slide--animated .pres-bullet-item:nth-child(8) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.50s both; }
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-logo {
+  animation: pressFadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-title,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-product-name,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-spec-product-name,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-generic-heading,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-gallery-heading,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-graph-heading {
+  animation: tektroBlurIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-subtitle,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-tagline,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-generic-subheading,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-gallery-subheading,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-graph-subheading {
+  animation: tektroSoftRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-accent-bar {
+  animation: tektroAccentCenter 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-accent-line,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-spec-underline,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-generic-underline,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-gallery-underline,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-graph-underline {
+  animation: tektroAccentCenter 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-brandline {
+  animation: pressFadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+}
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-category,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-badge {
+  animation: tektroSoftRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-product-img,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-spec-product-img,
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-generic-img {
+  animation: tektroImageReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-selling-point:nth-child(1) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-selling-point:nth-child(2) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.70s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-selling-point:nth-child(3) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.85s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-selling-point:nth-child(4) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.00s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-selling-point:nth-child(5) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.15s both; }
+
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-bullet-item:nth-child(1) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-bullet-item:nth-child(2) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.60s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-bullet-item:nth-child(3) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.75s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-bullet-item:nth-child(4) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.90s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-bullet-item:nth-child(5) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.05s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-bullet-item:nth-child(6) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.20s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-bullet-item:nth-child(7) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.35s both; }
+[data-theme="trp-tektro-corporate"] .pres-slide--animated .pres-bullet-item:nth-child(8) { animation: tektroGentleRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.50s both; }
+
+/* Spec table rows: staggered fade (both themes) */
+.pres-slide--animated .pres-spec-table tr:nth-child(1) { animation: pressFadeIn 0.4s ease 0.3s both; }
+.pres-slide--animated .pres-spec-table tr:nth-child(2) { animation: pressFadeIn 0.4s ease 0.38s both; }
+.pres-slide--animated .pres-spec-table tr:nth-child(3) { animation: pressFadeIn 0.4s ease 0.46s both; }
+.pres-slide--animated .pres-spec-table tr:nth-child(4) { animation: pressFadeIn 0.4s ease 0.54s both; }
+.pres-slide--animated .pres-spec-table tr:nth-child(5) { animation: pressFadeIn 0.4s ease 0.62s both; }
+.pres-slide--animated .pres-spec-table tr:nth-child(6) { animation: pressFadeIn 0.4s ease 0.70s both; }
+.pres-slide--animated .pres-spec-table tr:nth-child(7) { animation: pressFadeIn 0.4s ease 0.78s both; }
+.pres-slide--animated .pres-spec-table tr:nth-child(8) { animation: pressFadeIn 0.4s ease 0.86s both; }
+
+.pres-slide--animated .pres-spec-feature:nth-child(1) { animation: pressSlideLeft 0.4s ease 0.5s both; }
+.pres-slide--animated .pres-spec-feature:nth-child(2) { animation: pressSlideLeft 0.4s ease 0.58s both; }
+.pres-slide--animated .pres-spec-feature:nth-child(3) { animation: pressSlideLeft 0.4s ease 0.66s both; }
+.pres-slide--animated .pres-spec-feature:nth-child(4) { animation: pressSlideLeft 0.4s ease 0.74s both; }
+.pres-slide--animated .pres-spec-feature:nth-child(5) { animation: pressSlideLeft 0.4s ease 0.82s both; }
+.pres-slide--animated .pres-spec-feature:nth-child(6) { animation: pressSlideLeft 0.4s ease 0.90s both; }
+
+/* Corner animations — only Tektro uses fallback (TRP has trpCornerSnap) */
+[data-theme="tektro-light"] .pres-slide--animated .pres-corner {
+  animation: pressFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+/* Gallery animations */
+.pres-slide--animated .pres-gallery-heading {
+  animation: pressSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+.pres-slide--animated .pres-gallery-underline {
+  animation: pressAccentLine 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.35s both;
+}
+.pres-slide--animated .pres-gallery-item:nth-child(1) { animation: pressScaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both; }
+.pres-slide--animated .pres-gallery-item:nth-child(2) { animation: pressScaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.45s both; }
+.pres-slide--animated .pres-gallery-item:nth-child(3) { animation: pressScaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both; }
+
+/* Graph/data animations */
+.pres-slide--animated .pres-graph-heading {
+  animation: pressSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+.pres-slide--animated .pres-graph-underline {
+  animation: pressAccentLine 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.35s both;
+}
+.pres-slide--animated .pres-graph-chart-wrap,
+.pres-slide--animated .pres-graph-image-wrap {
+  animation: pressScaleIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+}
+.pres-slide--animated .pres-graph-notes {
+  animation: pressSlideLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pres-slide--animated *,
+  .pres-slide--animated *::before,
+  .pres-slide--animated *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+/* ============================================================================
+   SPOTLIGHT SLIDE — Apple-keynote-style emotional highlight
+   Always dark background; accent color set per theme via --pres-spotlight-accent.
+   ============================================================================ */
+
+/* Per-theme accent color (TRP red, Tektro yellow) */
+[data-theme="black-diamond"] {
+  --pres-spotlight-accent: #de2a2a;
+  --pres-spotlight-bg: #000000;
+  --pres-spotlight-fg: #FFFFFF;
+  --pres-spotlight-fg-muted: rgba(255, 255, 255, 0.6);
+  --pres-spotlight-value-color: var(--pres-spotlight-accent);
+}
+[data-theme="tektro-light"] {
+  --pres-spotlight-accent: #FFDF00;    /* kept for small accent touches only */
+  --pres-spotlight-bg: #FFFFFF;
+  --pres-spotlight-fg: #000000;
+  --pres-spotlight-fg-muted: rgba(0, 0, 0, 0.55);
+  --pres-spotlight-value-color: #000000; /* conservative: value in black, not yellow */
+}
+
+.pres-slide--spotlight {
+  background: var(--pres-spotlight-bg, #000000);
+  color: var(--pres-spotlight-fg, #FFFFFF);
+  display: flex;
+  flex-direction: column;
+  padding: 36px 56px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pres-slide--spotlight .pres-slide__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.pres-slide--spotlight .pres-slide__overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 1;
+}
+
+/* Removes the corner brackets from the spotlight slide for a cleaner canvas */
+.pres-slide--spotlight::before,
+.pres-slide--spotlight::after {
+  display: none;
+}
+
+.pres-spotlight__head {
+  text-align: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.pres-spotlight__kicker {
+  font-family: var(--pres-font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pres-spotlight-accent, #de2a2a);
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+
+.pres-spotlight__headline {
+  font-family: var(--pres-font-heading);
+  font-size: 56px;
+  font-weight: var(--pres-heading-weight, 800);
+  color: var(--pres-spotlight-fg, #FFFFFF);
+  letter-spacing: var(--pres-heading-tracking, -1px);
+  line-height: 1.05;
+  margin: 0;
+  text-transform: var(--pres-heading-transform, none);
+}
+
+.pres-spotlight__stats {
+  position: absolute;
+  bottom: 48px;
+  right: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-end;
+  text-align: right;
+  max-width: 260px;
+  z-index: 2;
+}
+
+.pres-slide--spotlight--stats-left .pres-spotlight__stats {
+  right: auto;
+  left: 56px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.pres-spotlight__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 100%;
+}
+
+.pres-spotlight__stat-label {
+  font-family: var(--pres-font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--pres-spotlight-fg-muted, rgba(255, 255, 255, 0.6));
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pres-spotlight__stat-value {
+  font-family: var(--pres-font-heading);
+  font-size: 44px;
+  font-weight: var(--pres-heading-weight, 800);
+  color: var(--pres-spotlight-value-color, var(--pres-spotlight-accent, #de2a2a));
+  line-height: 1;
+  letter-spacing: var(--pres-heading-tracking, -1px);
+  text-transform: var(--pres-heading-transform, none);
+  max-width: 100%;
+  word-break: break-word;               /* long values wrap instead of overflow */
+  overflow-wrap: break-word;
+}
+
+.pres-spotlight__stat-caption {
+  font-family: var(--pres-font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--pres-spotlight-fg-muted, rgba(255, 255, 255, 0.6));
+  max-width: 240px;
+}
+
+/* Tektro-light spotlight: tiny yellow accent mark under the kicker so the
+   brand colour is still present without fighting readability on white. */
+[data-theme="tektro-light"] .pres-slide--spotlight .pres-spotlight__kicker {
+  color: var(--pres-spotlight-fg, #000);
+}
+[data-theme="tektro-light"] .pres-slide--spotlight .pres-spotlight__kicker::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #FFDF00;
+  margin: 8px auto 0;
+}
+
+/* ===================================================================
+   SPOTLIGHT — animations (Apple-keynote-style reveal choreography)
+   Fires only when .pres-slide--animated is present (slideshow mode).
+   =================================================================== */
+@keyframes spotlightKickerRise {
+  from { opacity: 0; transform: translateY(8px); letter-spacing: 3px; }
+  to   { opacity: 1; transform: translateY(0);   letter-spacing: 1.5px; }
+}
+
+@keyframes spotlightHeadlineReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes spotlightStatRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Apply regardless of theme — both TRP and Tektro benefit from the same
+   Apple-style reveal choreography. Theme-specific keyframes stay reserved
+   for the other slide templates so this one keeps its distinctive feel. */
+.pres-slide--spotlight.pres-slide--animated .pres-spotlight__kicker {
+  animation: spotlightKickerRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.pres-slide--spotlight.pres-slide--animated .pres-spotlight__headline {
+  animation: spotlightHeadlineReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+.pres-slide--spotlight.pres-slide--animated .pres-slide__bg {
+  animation: pressFadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0s both;
+}
+
+/* Stat callouts stagger in after the headline lands */
+.pres-slide--spotlight.pres-slide--animated .pres-spotlight__stat:nth-child(1) {
+  animation: spotlightStatRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.70s both;
+}
+.pres-slide--spotlight.pres-slide--animated .pres-spotlight__stat:nth-child(2) {
+  animation: spotlightStatRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.88s both;
+}
+.pres-slide--spotlight.pres-slide--animated .pres-spotlight__stat:nth-child(3) {
+  animation: spotlightStatRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.06s both;
+}
+
+/* Logo fades in last */
+.pres-slide--spotlight.pres-slide--animated .pres-slide-logo {
+  animation: pressFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both;
+}
